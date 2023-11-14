@@ -44,3 +44,22 @@ def validMountainArray(self, arr: List[int]) -> bool:
                     ni += 1
                 else:
                     ni += 1
+
+#longest substring without repeating characters
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        ch = Counter()
+        left = right = 0
+        res = 0
+
+        while (right < len(s)):
+            r = s[right]
+            ch[r] += 1
+
+            while (ch[r] > 1):
+                l = s[left]
+                ch[l] -= 1
+                left += 1
+
+            res = max(res, right - left + 1)
+            right += 1
+        return res
